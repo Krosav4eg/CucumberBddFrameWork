@@ -1,0 +1,41 @@
+git s# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+# until kw test packages are published allow *.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Apple and possible Linux runtimes
+*.DS_Store
+
+# IntelliJ files
+*.iml
+.idea
+.settings/
+.classpath
+.project
+
+# Build or test run output
+**/target/
+**/out/
+**/build/
+
+# Property file with sensitive data
+/src/test/resources/cukes.properties

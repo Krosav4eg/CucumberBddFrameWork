@@ -1,0 +1,112 @@
+package core.helpers;
+
+import com.codeborne.selenide.*;
+import core.readconfigproperties.PropertiesReader;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+
+import static com.codeborne.selenide.CollectionCondition.allMatch;
+import static com.codeborne.selenide.CollectionCondition.texts;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+
+
+/**
+ * ActionsHelper class is intended for common actions on a webpage in tests.
+ */
+public class ActionHelper {
+
+    public static void openUrl() {
+        open(PropertiesReader.load().getProperty("base.url"));
+    }
+
+    public static void clickOnButton(SelenideElement element) {
+        element.shouldBe(Condition.exist).shouldBe(Condition.visible).shouldBe(enabled).click();
+    }
+
+    public static void isElementDisplayed(SelenideElement element) {
+        element.shouldBe(Condition.visible);
+    }
+
+    public static boolean isElementNotDisplayed(SelenideElement element) {
+        return !element.is(visible);
+    }
+
+    public static boolean isElementActive(SelenideElement element) {
+        return element.shouldBe(Condition.exist).isEnabled();
+    }
+
+    public static boolean isElementSelected(SelenideElement element) {
+        return element.shouldBe(Condition.exist).isSelected();
+    }
+
+    public static boolean isElementInactive(SelenideElement element) {
+        return !element.shouldBe(Condition.exist).isEnabled();
+    }
+
+    public static void setTextInField(SelenideElement element, String value) {
+        element.shouldBe(Condition.exist).clear();
+        element.shouldBe(Condition.exist).setValue(value);
+    }
+
+    public static void checkThatElementContainsText(SelenideElement element, String containsText) {
+        element.shouldBe(visible).shouldHave(text(containsText));
+    }
+
+    public static void checkThatElementsContainTexts(ElementsCollection selenideElements, List<String> containsText) {
+        selenideElements.shouldHave(texts(containsText));
+    }
+
+    public static ElementsCollection checkThatElementCollectionsHasSize(ElementsCollection selenideElements, int collectionSize) {
+        return selenideElements.shouldHave(
+                CollectionCondition.size(collectionSize));
+    }
+
+    public static ElementsCollection checkThatAllElementsAreVisible(ElementsCollection selenideElements) {
+        return selenideElements.should(allMatch("All elements should be visible", WebElement::isDisplayed));
+    }
+
+    public static boolean checkThatAllElementsContainsText(ElementsCollection selenideElements, String searchWord) {
+        return selenideElements.stream().map(WebElement::getText).map(String::toUpperCase).allMatch(e -> e.contains(searchWord));
+    }
+
+    public static boolean checkThatAllElementsContainsNumberValue(ElementsCollection selenideElements, int minPrice, int maxPrice) {
+        return selenideElements.stream().map(WebElement::getText).map(e -> e.replaceAll(" ", ""))
+                .map(e -> e.replaceAll("₴", "")).mapToInt(Integer::parseInt)
+                .allMatch(number -> number >= minPrice && number <= maxPrice);
+    }
+
+    public static void selectOptionByText(ElementsCollection selenideElements, String text) {
+        selenideElements.should(CollectionCondition.sizeGreaterThan(0));
+        selenideElements.stream().filter(element -> element.getText().trim().equals(text.trim())).findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Unable to find element with text: " + text)).click();
+    }
+
+    public static SelenideElement scrollIntoElement(SelenideElement element) {
+        return element.scrollIntoView(true);
+    }
+
+
+    public static String getElementText(SelenideElement element) {
+        return element.getText();
+    }
+
+    public static String getElementValue(SelenideElement element) {
+        return element.getValue();
+    }
+
+    public static void timeOutDelay() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static SelenideElement setRequiredTextIntoXpath(String element, String inputText) {
+        return $(byXpath(String.format(element, inputText)));
+    }
+}
