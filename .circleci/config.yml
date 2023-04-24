@@ -12,6 +12,9 @@ parameters:
   ApiTrigger:
     type: boolean
     default: false
+  NightlyRunNotify:
+    type: boolean
+    default: true
 
 jobs:
   build:
