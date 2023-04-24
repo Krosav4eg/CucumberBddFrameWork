@@ -18,10 +18,8 @@ parameters:
 
 jobs:
   build:
-
     parameters:
-      # If this parameter is true, test execution report will be sent to Jira
-      SendReportToJira:
+      NightlyRunNotify:
         type: boolean
         default: false
 
