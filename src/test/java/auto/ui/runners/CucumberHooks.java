@@ -21,6 +21,7 @@ public class CucumberHooks {
         WebDriverRunner.setWebDriver(BrowserFactory.getInstance().createDriverInstance(PropertiesReader.load()
                 .getProperty("base.browser")));
         Configuration.timeout = Integer.parseInt(PropertiesReader.load().getProperty("waitingTimeout"));
+        Configuration.pollingInterval=500;
     }
 
     @After
