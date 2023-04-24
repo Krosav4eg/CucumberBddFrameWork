@@ -1,4 +1,4 @@
-package auto.ui.runners;
+package auto.ui.steps.globalHooks;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
@@ -16,12 +16,12 @@ import static core.browserfactory.BrowserFactory.closeBrowser;
 
 public class CucumberHooks {
 
-    @Before()
+    @Before
     public void setUp() {
         WebDriverRunner.setWebDriver(BrowserFactory.getInstance().createDriverInstance(PropertiesReader.load()
                 .getProperty("base.browser")));
         Configuration.timeout = Integer.parseInt(PropertiesReader.load().getProperty("waitingTimeout"));
-        Configuration.pollingInterval=500;
+        Configuration.pollingInterval = 500;
     }
 
     @After
