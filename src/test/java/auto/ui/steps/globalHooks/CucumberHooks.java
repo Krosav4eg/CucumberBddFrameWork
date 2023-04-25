@@ -3,10 +3,11 @@ package auto.ui.steps.globalHooks;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import core.browserfactory.BrowserFactory;
-import core.readconfigproperties.PropertiesReader;
+import core.utils.propReader.PropsConfig;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -16,11 +17,12 @@ import static core.browserfactory.BrowserFactory.closeBrowser;
 
 public class CucumberHooks {
 
+    public static final PropsConfig PROPS_CONFIG = ConfigFactory.create(PropsConfig.class);
+
     @Before
     public void setUp() {
-        WebDriverRunner.setWebDriver(BrowserFactory.getInstance().createDriverInstance(PropertiesReader.load()
-                .getProperty("base.browser")));
-        Configuration.timeout = Integer.parseInt(PropertiesReader.load().getProperty("waitingTimeout"));
+        WebDriverRunner.setWebDriver(BrowserFactory.getInstance().createDriverInstance(PROPS_CONFIG.BASE_BROWSER()));
+        Configuration.timeout = Integer.parseInt(PROPS_CONFIG.WAITING_TIMEOUT());
         Configuration.pollingInterval = 500;
     }
 

@@ -184,6 +184,11 @@
             <version>1.18.22</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner</artifactId>
+            <version>1.0.12</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.codeborne/selenide -->
         <dependency>

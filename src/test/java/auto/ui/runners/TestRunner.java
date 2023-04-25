@@ -11,11 +11,12 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		plugin = {"pretty", "json:target/cucumber.json", "timeline:target/cucumber-html-reports/"},
-		features = {"src/test/resources/features"},
-		glue = {"auto/ui/steps"},
-		tags = "@Filter",
-		monochrome = true
+        plugin = {"pretty", "json:target/cucumber.json", "timeline:target/cucumber-html-reports/"},
+        features = {"src/test/resources/features"},
+        glue = {"auto/ui/steps"},
+        tags = "@Filter",
+        monochrome = true,
+        dryRun = false
 )
 
 public class TestRunner {

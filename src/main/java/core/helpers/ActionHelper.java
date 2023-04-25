@@ -1,7 +1,8 @@
 package core.helpers;
 
 import com.codeborne.selenide.*;
-import core.readconfigproperties.PropertiesReader;
+import core.utils.propReader.PropsConfig;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -19,8 +20,11 @@ import static com.codeborne.selenide.Selenide.open;
  */
 public class ActionHelper {
 
+    public static final PropsConfig PROPS_CONFIG = ConfigFactory.create(PropsConfig.class);
+
+
     public static void openUrl() {
-        open(PropertiesReader.load().getProperty("base.url"));
+        open(PROPS_CONFIG.BASE_URL());
     }
 
     public static void clickOnButton(SelenideElement element) {
