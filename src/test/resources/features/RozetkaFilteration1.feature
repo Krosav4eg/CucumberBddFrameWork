@@ -1,15 +1,22 @@
-@Filter
-Feature: Rozetka filter
+@Categories
+Feature: Rozetka categories
 
   Background: Navigate to the main catalog page
     Given I navigate to home page
 
-  @Test-1
-  Scenario: Verify selected goods size
-    When check that all goods items have size
+  @Test-3
+  Scenario: Verify notebook categories
+    When User clicks on 'Каталог' in header menu
+    Then User sees following sub categories in section 'Ноутбуки':
+      | Asus                 |
+      | Acer                 |
+      | HP (Hewlett Packard) |
+      | Lenovo               |
+      | Dell                 |
+      | Apple Macbook        |
 
-  @Test-2
-  Scenario: Check that goods tiles contains search word
+  @Test-4
+  Scenario: Verify main categories menu
     When User clicks on Rozetka icon in header menu
     Then user check main categories menu list:
       | Ноутбуки и компьютеры       |
