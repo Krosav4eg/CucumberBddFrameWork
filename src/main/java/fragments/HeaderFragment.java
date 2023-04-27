@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
@@ -23,7 +24,7 @@ public class HeaderFragment {
     }
 
     public void clickOnCatalogMenuButton(String menuText) {
-        isElementDisplayed(setRequiredTextIntoXpath(catalogMenuButton, menuText));
+        isElementDisplayed(setRequiredTextIntoXpath(catalogMenuButton, menuText).shouldBe(enabled));
         clickOnButton(setRequiredTextIntoXpath(catalogMenuButton, menuText));
     }
 
