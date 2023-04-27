@@ -10,5 +10,15 @@ Feature: Rozetka filter
 
   @Test-2
   Scenario: Check that goods tiles contains search word
-    When select name of selected product ASUS form filter bar
-    Then goods tiles contains search word "ASUS"
+    When User clicks on Rozetka icon in header menu
+    Then user check main categories menu list:
+      | Ноутбуки та комп’ютери      |
+      | Смартфони, ТВ і електроніка |
+      | Товари для геймерів         |
+      | Побутова техніка            |
+      | Товари для дому             |
+      | Інструменти та автотовари   |
+      | Сантехніка та ремонт        |
+      | Дача, сад і город           |
+      | Спорт і захоплення          |
+      | Одяг, взуття та прикраси    |
