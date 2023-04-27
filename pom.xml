@@ -11,15 +11,24 @@
     <properties>
         <java.version>11</java.version>
         <maven.compiler.version>3.8.1</maven.compiler.version>
-        <cucumber.version>7.0.0</cucumber.version>
-        <selenium.version>3.14.0</selenium.version>
-        <log4j.version>2.11.0</log4j.version>
-        <selenide.version>5.25.1</selenide.version>
-        <guice.version>4.2.3</guice.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <maven.surefire.plugin>2.22.2</maven.surefire.plugin>
+        <cucumber.version>7.0.0</cucumber.version>
+        <cucumber.reporting>5.6.0</cucumber.reporting>
+        <selenium.version>3.14.0</selenium.version>
+        <webdrivermanager.version>4.4.3</webdrivermanager.version>
+        <selenide.version>5.25.1</selenide.version>
+        <guice.version>4.2.3</guice.version>
+        <selenium.version>3.14.0</selenium.version>
+        <log4j.version>2.11.0</log4j.version>
+        <lombok.version>1.18.22</lombok.version>
+        <junit.version>4.12</junit.version>
+        <owner.version>1.0.12</owner.version>
+
     </properties>
 
+    <!-- Below code is running BDD tests. In this case we run tests simultaneously by scenario -->
     <profiles>
         <profile>
             <id>parallel</id>
@@ -28,7 +37,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.22.2</version>
+                        <version>${maven.surefire.plugin}</version>
                         <configuration>
                             <parallel>methods</parallel>
                             <forkMode>perthread</forkMode>
@@ -53,7 +62,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.22.2</version>
+                        <version>${maven.surefire.plugin}</version>
                         <configuration>
                             <testFailureIgnore>true</testFailureIgnore>
                             <includes>
@@ -68,13 +77,6 @@
 
     <!-- Below code is to generate cucumber html reporting -->
     <build>
-        <extensions>
-            <extension>
-                <groupId>com.google.cloud.artifactregistry</groupId>
-                <artifactId>artifactregistry-maven-wagon</artifactId>
-                <version>2.1.4</version>
-            </extension>
-        </extensions>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -88,7 +90,7 @@
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
-                <version>5.6.0</version>
+                <version>${cucumber.reporting}</version>
                 <executions>
                     <execution>
                         <id>execution</id>
@@ -130,7 +132,13 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-api</artifactId>
-            <version>3.14.0</version>
+            <version>${selenium.version}</version>
+        </dependency>
+        <!-- Selenide -->
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>${selenide.version}</version>
         </dependency>
 
         <!-- Logging -->
@@ -144,7 +152,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
         </dependency>
         <dependency>
             <groupId>org.unitils</groupId>
@@ -157,44 +165,35 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>4.4.3</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
+
+        <!-- Google guice -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-guice</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- Google guice -->
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>${guice.version}</version>
             <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
+            <version>${lombok.version}</version>
             <scope>compile</scope>
         </dependency>
+
+        <!-- Reading props -->
         <dependency>
             <groupId>org.aeonbits.owner</groupId>
             <artifactId>owner</artifactId>
-            <version>1.0.12</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.codeborne/selenide -->
-        <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>selenide</artifactId>
-            <version>${selenide.version}</version>
+            <version>${owner.version}</version>
         </dependency>
     </dependencies>
 </project>
