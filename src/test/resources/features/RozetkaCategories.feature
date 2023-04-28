@@ -6,7 +6,7 @@ Feature: Rozetka categories
     When User clicks on Rozetka icon in header menu
 
   @Test-3
-  Scenario: Verify notebook categories
+  Scenario: Verify partner categories
     And User scrolls to the 'Партнерам' section
     Then User sees following sub categories in section 'Партнерам':
       | Продавать на Розетке  |
