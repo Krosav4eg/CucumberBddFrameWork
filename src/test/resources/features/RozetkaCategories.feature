@@ -1,16 +1,22 @@
-@Filter
-Feature: Rozetka filter
+@Categories
+Feature: Rozetka categories
 
   Background: Navigate to the main catalog page
     Given I navigate to home page
-
-  @Test-1
-  Scenario: Verify selected goods size
-    When check that all goods items have size
-
-  @Test-2
-  Scenario: Check that goods tiles contains search word
     When User clicks on Rozetka icon in header menu
+
+  @Test-3
+  Scenario: Verify partner categories
+    And User scrolls to the 'Партнерам' section
+    Then User sees following sub categories in section 'Партнерам':
+      | Продавать на Розетке  |
+      | Сотрудничество с нами |
+      | Франчайзинг           |
+      | Аренда помещений      |
+
+
+  @Test-4
+  Scenario: Verify main categories menu
     Then user check main categories menu list:
       | Ноутбуки и компьютеры       |
       | Смартфоны, ТВ и электроника |

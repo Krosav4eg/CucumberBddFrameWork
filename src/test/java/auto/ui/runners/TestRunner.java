@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "json:target/cucumber.json", "timeline:target/cucumber-html-reports/"},
         features = {"src/test/resources/features"},
         glue = {"auto/ui/steps"},
-        tags = "@Filter",
+        tags = "(@Filter or @Categories)",
         monochrome = true,
         dryRun = false
 )

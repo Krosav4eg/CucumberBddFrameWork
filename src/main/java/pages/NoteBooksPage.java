@@ -13,9 +13,4 @@ public class NoteBooksPage extends AbstractPage {
     public void checkThatGoodsItemsHaveSize(int size) {
         getGoodItemFragment().checkSizeAllGoodsBodyItems(size);
     }
-
-    public boolean checkThatGoodsItemsPriceRangeIsCorrect(int min, int max) {
-        getGoodItemFragment().witForAllGoodsBodyItemsArePresent();
-        return getGoodItemFragment().checkThatAllElementsContainsRequiredPriceRange(min, max);
-    }
 }
