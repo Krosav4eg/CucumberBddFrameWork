@@ -2,6 +2,7 @@ package fragments;
 
 import com.codeborne.selenide.ElementsCollection;
 import lombok.Getter;
+
 import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selenide.$$;
 import static core.helpers.ActionHelper.*;
@@ -19,9 +20,5 @@ public class GoodItemFragment {
 
     public void checkSizeAllGoodsBodyItems(int elementsSize) {
         checkThatElementCollectionsHasSize(goodsBodyItem, elementsSize);
-    }
-
-    public boolean checkThatAllElementsContainsRequiredPriceRange(int min, int max) {
-        return checkThatAllElementsContainsNumberValue(goodsPriceList, min, max);
     }
 }

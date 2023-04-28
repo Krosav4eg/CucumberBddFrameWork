@@ -3,21 +3,20 @@ Feature: Rozetka categories
 
   Background: Navigate to the main catalog page
     Given I navigate to home page
+    When User clicks on Rozetka icon in header menu
 
   @Test-3
   Scenario: Verify notebook categories
-    When User clicks on 'Каталог' in header menu
-    Then User sees following sub categories in section 'Ноутбуки':
-      | Asus                 |
-      | Acer                 |
-      | HP (Hewlett Packard) |
-      | Lenovo               |
-      | Dell                 |
-      | Apple Macbook        |
+    And User scrolls to the 'Партнерам' section
+    Then User sees following sub categories in section 'Партнерам':
+      | Продавать на Розетке  |
+      | Сотрудничество с нами |
+      | Франчайзинг           |
+      | Аренда помещений      |
+
 
   @Test-4
   Scenario: Verify main categories menu
-    When User clicks on Rozetka icon in header menu
     Then user check main categories menu list:
       | Ноутбуки и компьютеры       |
       | Смартфоны, ТВ и электроника |
