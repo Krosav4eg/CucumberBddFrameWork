@@ -35,3 +35,4 @@ API tests for Listings using BDD approach
 
 - Local run - Reports are available under `target/cucumber-html-reports`
 - CI - reports are available under the **Artifacts** of the Job details
+- To see allure report use 'mvn allure:serve allure:report' command in terminall
