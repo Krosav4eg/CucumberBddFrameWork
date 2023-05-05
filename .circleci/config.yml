@@ -102,5 +102,3 @@ workflows:
       - Running-configuration
       - buid_approval:
             type: approval
-            requires:
-              - buid_approval
