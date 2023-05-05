@@ -99,6 +99,6 @@ workflows:
   on_demand:
     when: << pipeline.parameters.ApiTrigger >>
     jobs:
-      - Running-configuration
       - buid_approval:
             type: approval
+      - Running-configuration
