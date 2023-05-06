@@ -17,21 +17,20 @@ parameters:
     type: boolean
     default: true
 
-jobs:
-  Running-configuration:
-    parameters:
-      NightlyRunNotify:
-        type: boolean
-        default: false
 
+executors:
+  test-executor:
     docker:
       - image: circleci/openjdk:11.0.6-jdk-buster-node-browsers-legacy
 
-    working_directory: ~/ui-automation-listings
+    working_directory: ~/cucumber-bdd-ui-automation-tests
 
     environment:
       MAVEN_OPTS: -Xmx3200m
 
+commands:
+  run-tests:
+    description: "Run Automation Tests"
     steps:
       - checkout
       - browser-tools/install-firefox
@@ -71,6 +70,13 @@ jobs:
                 only_for_branches: master
                 webhook: $SLACK_WEBHOOK
 
+jobs:
+  automation-tests-running-configuration:
+   executor: test-executor
+   steps:
+    - run-tests
+
+
 workflows:
 
   commit-workflow:
@@ -78,7 +84,7 @@ workflows:
       and:
         - equal: [ false, << pipeline.parameters.ApiTrigger >>]
     jobs:
-      - Running-configuration:
+      - automation-tests-running-configuration:
           filters:
             branches:
               only:
@@ -93,7 +99,7 @@ workflows:
               only:
                 - master
     jobs:
-      - Running-configuration:
+      - automation-tests-running-configuration:
           NightlyRunNotify: true
 
   on_demand:
@@ -101,4 +107,4 @@ workflows:
     jobs:
       - buid_approval:
             type: approval
-      - Running-configuration
+      - automation-tests-running-configuration
