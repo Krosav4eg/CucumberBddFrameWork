@@ -100,7 +100,6 @@ commands:
           destination: Report/Checkstyle
 
 jobs:
-
   checkstyle-check:
     executor: my-executor
     steps:
@@ -153,4 +152,5 @@ workflows:
     jobs:
       - buid_approval:
           type: approval
+      - checkstyle-check:
       - automation-tests-running-configuration
