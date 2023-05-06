@@ -152,6 +152,5 @@ workflows:
     jobs:
       - buid_approval:
           type: approval
-      - automation-tests-running-configuration:
-          requires:
-            - checkstyle-check
+      - checkstyle-check
+      - automation-tests-running-configuration
