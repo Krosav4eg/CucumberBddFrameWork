@@ -87,9 +87,8 @@ commands:
     steps:
       - run:
           name: Checkstyle check code
-          command: |
-            mvn clean site
-            mvn checkstyle:checkstyle
+          command: mvn
+            clean site checkstyle:checkstyle
           no_output_timeout: 90m
 
   store-checkstyle-artifacts:
@@ -150,5 +149,7 @@ workflows:
   on-demand:
     when: << pipeline.parameters.ApiTrigger >>
     jobs:
+      - buid_approval:
+          type: approval
       - checkstyle-check
       - automation-tests-running-configuration
