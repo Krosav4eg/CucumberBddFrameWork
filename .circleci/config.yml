@@ -101,7 +101,7 @@ commands:
 
 jobs:
   checkstyle-check:
-    executor: my-executor
+    executor: test-executor
     steps:
       - mvn-checkstyle
       - store-checkstyle-artifacts
