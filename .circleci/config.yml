@@ -23,7 +23,7 @@ executors:
     docker:
       - image: circleci/openjdk:11.0.6-jdk-buster-node-browsers-legacy
 
-    working_directory: ~/cucumber-bdd-ui-automation-tests
+    working_directory: ~/MyBDDFrame
 
     environment:
       MAVEN_OPTS: -Xmx3200m
@@ -83,7 +83,7 @@ commands:
                 webhook: $SLACK_WEBHOOK
 
   mvn-checkstyle:
-    description: "Checkstyle check code"
+    description: Checkstyle check code
     steps:
       - run:
           name: Checkstyle check code
@@ -93,7 +93,7 @@ commands:
           no_output_timeout: 90m
 
   store-checkstyle-artifacts:
-    description: "Store Checkstyle generated artifacts"
+    description: Store Checkstyle generated artifacts
     steps:
       - store_artifacts:
           path: target/site
