@@ -29,40 +29,46 @@ executors:
       MAVEN_OPTS: -Xmx3200m
 
 commands:
-  #My custom command name- 'run-tests'
-  run-tests:
-    description: "Run Automation Tests"
+  #My custom command name 'install-browsers'
+  install-browsers:
+    description: "Checkout to my code and install browsers"
     steps:
       - checkout
       - browser-tools/install-firefox
       - browser-tools/install-geckodriver
 
-      - restore_cache:
-          keys:
+  restore-and-save-cache:
+    description: "Restore and save cache"
+     - restore_cache:
+         keys:
             - v1-dependencies-{{ checksum "pom.xml" }}
             - v1-dependencies-
 
+     - run: mvn dependency:go-offline
 
-      - run: mvn dependency:go-offline
-
-      - save_cache:
-          paths:
+     - save_cache:
+        paths:
             - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
+        key: v1-dependencies-{{ checksum "pom.xml" }}
 
+  running-automation-tests:
+    description: "Running automation tests"
       - run:
           name: Run tests
           command: mvn
             clean verify -P parallel
           no_output_timeout: 40m
 
+  generating-cucumber-report:
+    description: "generating-cucumber-report"
       - store_artifacts:
           name: Upload Cucumber report
           path: target/cucumber-html-reports
           destination: Report/Cucumber
 
-      # Send notification to my Slack channel
-      - when:
+  send-notification-to-slack-channel:
+    description: "Send notification to Slack channel"
+       - when:
           condition: << pipeline.parameters.notifyToSlack >>
           steps:
             - slack/status:
@@ -81,7 +87,11 @@ jobs:
     executor: test-executor
     #There is all custom names which located under 'Commands' section
     steps:
-      - run-tests
+      - install-browsers
+      - restore-and-save-cache
+      - running-automation-tests
+      - generating-cucumber-report
+      - send-notification-to-slack-channel
 
 
 workflows:
