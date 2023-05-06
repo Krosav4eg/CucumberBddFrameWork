@@ -41,7 +41,7 @@ commands:
     description: "Restore and save cache"
     steps:
       - restore_cache:
-         keys:
+          keys:
             - v1-dependencies-{{ checksum "pom.xml" }}
             - v1-dependencies-
 
