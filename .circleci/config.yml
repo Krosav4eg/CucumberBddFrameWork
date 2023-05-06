@@ -73,7 +73,7 @@ commands:
   send-notification-to-slack-channel:
     description: "Send notification to Slack channel"
     steps:
-       - when:
+      - when:
           condition: << pipeline.parameters.notifyToSlack >>
           steps:
             - slack/status:
@@ -82,7 +82,31 @@ commands:
                 only_for_branches: master
                 webhook: $SLACK_WEBHOOK
 
+  mvn-checkstyle:
+    description: "Checkstyle check code"
+    steps:
+      - run:
+          name: Checkstyle check code
+          command: |
+            mvn clean site
+            mvn checkstyle:checkstyle
+          no_output_timeout: 90m
+
+  store-checkstyle-artifacts:
+    description: "Store Checkstyle generated artifacts"
+    steps:
+      - store_artifacts:
+          path: target/site
+          destination: Report/Checkstyle
+
 jobs:
+
+  checkstyle-check:
+    executor: my-executor
+    steps:
+      - mvn-checkstyle
+      - store-checkstyle-artifacts
+
   #There is a custom name of my job. We can change it anytime
   automation-tests-running-configuration:
     parameters:
@@ -128,5 +152,5 @@ workflows:
     when: << pipeline.parameters.ApiTrigger >>
     jobs:
       - buid_approval:
-            type: approval
+          type: approval
       - automation-tests-running-configuration

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+    <suppress checks="ConstantName" files="src/main/java/core/browserfactory/BrowserFactory.java"/>
+    <suppress checks="FinalClass" files="src/main/java/core/browserfactory/BrowserFactory.java"/>
+    <suppress checks="RightCurly" files="src/main/java/core/browserfactory/BrowserFactory.java"/>
+    <suppress checks="LineLength" files="src/main/java/core/helpers.*java"/>
+    <suppress checks="MagicNumber" files="src/main/java/pages.*java"/>
+</suppressions>

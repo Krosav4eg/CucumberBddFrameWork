@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import fragments.HeaderFragment;
 import io.cucumber.java.en.When;
 
-
+@SuppressWarnings({"checkstyle:VisibilityModifier", "checkstyle:DesignForExtension", "checkstyle:MethodName"})
 public class HeaderFragmentStepDef {
     @Inject
     HeaderFragment headerFragment;

@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import pages.NoteBooksPage;
 
 @ScenarioScoped
+@SuppressWarnings({"checkstyle:VisibilityModifier","checkstyle:DesignForExtension","checkstyle:MagicNumber"})
 public class NoteBooksPageStepDef{
 
     @Inject

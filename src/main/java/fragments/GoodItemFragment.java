@@ -9,6 +9,7 @@ import static core.helpers.ActionHelper.*;
 
 
 @Getter
+@SuppressWarnings({"checkstyle:VisibilityModifier", "checkstyle:DesignForExtension"})
 public class GoodItemFragment {
     ElementsCollection goodsBodyItem = $$(byCssSelector("a.goods-tile__picture.ng-star-inserted"));
     ElementsCollection goodsTitle = $$(byCssSelector("span.goods-tile__title"));

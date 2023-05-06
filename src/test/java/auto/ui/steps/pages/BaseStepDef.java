@@ -8,6 +8,7 @@ import pages.AbstractPage;
 
 
 @ScenarioScoped
+@SuppressWarnings({"checkstyle:VisibilityModifier","checkstyle:DesignForExtension"})
 public class BaseStepDef {
 
     @Inject

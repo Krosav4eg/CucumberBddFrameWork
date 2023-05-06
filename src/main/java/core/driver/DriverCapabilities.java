@@ -8,6 +8,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverCapabilities {
 
+    protected DriverCapabilities() {
+    }
+
     public static ChromeOptions chromeOptions() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");

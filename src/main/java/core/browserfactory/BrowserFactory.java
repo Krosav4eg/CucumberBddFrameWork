@@ -6,16 +6,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import static core.browserfactory.BrowserTypes.*;
+import static core.browserfactory.BrowserTypes.CHROME;
+import static core.browserfactory.BrowserTypes.FIREFOX;
 
-
-public class BrowserFactory extends DriverCapabilities {
+@SuppressWarnings("checkstyle:ConstantName")
+public final class  BrowserFactory extends DriverCapabilities {
     public static final String DRIVER_NAME_FIREFOX = "webdriver.gecko.driver";
     public static final String FIREFOX_DRIVER_PATH = "/usr/local/bin/geckodriver";
-
-    private static final ThreadLocal<WebDriver> driverThread = new ThreadLocal<WebDriver>();
-
+    private static final ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
     private static volatile BrowserFactory instance;
+
+    private BrowserFactory() {
+    }
 
     public static BrowserFactory getInstance() {
         if (instance == null) {
@@ -28,9 +30,6 @@ public class BrowserFactory extends DriverCapabilities {
         return instance;
     }
 
-    private BrowserFactory() {
-    }
-
     public static WebDriver getDriver() {
         return driverThread.get();
     }
@@ -40,7 +39,8 @@ public class BrowserFactory extends DriverCapabilities {
             if (CHROME.getBrowser().equalsIgnoreCase(browserName)) {
                 WebDriverManager.chromedriver().setup();
                 driverThread.set(new ChromeDriver(chromeOptions()));
-            } else if (FIREFOX.getBrowser().equalsIgnoreCase(browserName)) {
+            }
+            else if (FIREFOX.getBrowser().equalsIgnoreCase(browserName)) {
                 System.setProperty(DRIVER_NAME_FIREFOX, FIREFOX_DRIVER_PATH);
                 driverThread.set(new FirefoxDriver());
             }

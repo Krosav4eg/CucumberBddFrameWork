@@ -6,6 +6,7 @@ import io.cucumber.guice.ScenarioScoped;
 import io.cucumber.java.en.When;
 
 @ScenarioScoped
+@SuppressWarnings({"checkstyle:VisibilityModifier","checkstyle:DesignForExtension"})
 public class FilterSideFragmentStepDef {
     @Inject
     protected FilterSideFragment filterSideFragment;

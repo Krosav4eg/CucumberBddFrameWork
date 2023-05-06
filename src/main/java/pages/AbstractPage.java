@@ -15,6 +15,7 @@ import static core.helpers.ActionHelper.*;
  * This fragments can be using for interaction in different classes.
  */
 @Getter
+@SuppressWarnings({"checkstyle:VisibilityModifier","checkstyle:DesignForExtension"})
 public class AbstractPage {
     protected GoodItemFragment goodItemFragment = new GoodItemFragment();
     protected FilterSideFragment filterSideFragment = new FilterSideFragment();

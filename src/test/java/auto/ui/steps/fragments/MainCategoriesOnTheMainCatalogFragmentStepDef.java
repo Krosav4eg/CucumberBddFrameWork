@@ -9,6 +9,7 @@ import org.junit.Assert;
 
 import java.util.List;
 
+@SuppressWarnings({"checkstyle:VisibilityModifier","checkstyle:DesignForExtension"})
 public class MainCategoriesOnTheMainCatalogFragmentStepDef {
 
     @Inject

@@ -8,6 +8,7 @@ import org.aeonbits.owner.Config;
  * By default the first available properties file specified by Config.Sources.
  */
 @Config.Sources({"classpath:runnerConfig.properties"})
+@SuppressWarnings("checkstyle:MethodName")
 public interface PropsConfig extends Config {
 
     @Config.Key("base.browser")

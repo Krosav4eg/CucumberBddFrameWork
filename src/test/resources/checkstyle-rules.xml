@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+  "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+  "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<!--
+  Checkstyle configuration that checks the sun coding conventions from:
+    - the Java Language Specification at
+      https://docs.oracle.com/javase/specs/jls/se11/html/index.html
+    - the Sun Code Conventions at https://www.oracle.com/java/technologies/javase/codeconventions-contents.html
+    - the Javadoc guidelines at
+      https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html
+    - the JDK Api documentation https://docs.oracle.com/en/java/javase/11/
+    - some best practices
+  Checkstyle is very configurable. Be sure to read the documentation at
+  https://checkstyle.org (or in your downloaded distribution).
+  Most Checks are configurable, be sure to consult the documentation.
+  To completely disable a check, just comment it out or delete it from the file.
+  To suppress certain violations please review suppression filters.
+  Finally, it is worth reading the documentation.
+-->
+
+<module name="Checker">
+
+  <!-- If you set the basedir property for module below, then all reported file names will be relative to the specified directory.
+  See https://checkstyle.org/config.html#Checker
+    <property name="basedir" value="${basedir}"/> -->
+  <module name="SuppressWarningsFilter"/>
+    <property name="severity" value="warning"/>
+    <property name="fileExtensions" value="java, properties, xml"/>
+
+  <!-- Excludes all 'module-info.java' files -->
+  <!-- See https://checkstyle.org/config_filefilters.html -->
+  <module name="BeforeExecutionExclusionFileFilter">
+    <property name="fileNamePattern" value="module\-info\.java$"/>
+  </module>
+
+  <!-- https://checkstyle.org/config_filters.html#SuppressionFilter -->
+  <module name="SuppressionFilter">
+    <property name="file" value="src/test/resources/checkstyle-suppressions.xml"/>
+    <property name="optional" value="false"/>
+  </module>
+
+
+  <!-- Checks for Size Violations. -->
+  <!-- See https://checkstyle.org/config_sizes.html -->
+  <module name="FileLength">
+    <property name="severity" value="error"/>
+    <property name="max" value="2000"/>
+  </module>
+
+  <module name="LineLength">
+    <property name="severity" value="error"/>
+    <property name="max" value="120"/>
+    <property name="fileExtensions" value="java"/>
+  </module>
+
+  <!-- Checks for whitespace -->
+  <!-- See https://checkstyle.org/config_whitespace.html -->
+  <module name="FileTabCharacter"/>
+
+  <!-- Miscellaneous other checks. -->
+  <!-- See https://checkstyle.org/config_misc.html -->
+  <module name="RegexpSingleline">
+    <property name="format" value="\s+$"/>
+    <property name="minimum" value="0"/>
+    <property name="maximum" value="0"/>
+    <property name="message" value="Line has trailing spaces."/>
+  </module>
+
+  <module name="TreeWalker">
+
+    <!-- Checks for Javadoc comments. -->
+    <!-- See https://checkstyle.org/config_javadoc.html -->
+    <module name="InvalidJavadocPosition"/>
+    <module name="JavadocType"/>
+    <module name="JavadocStyle"/>
+
+    <!-- Checks for Naming Conventions. -->
+    <!-- See https://checkstyle.org/config_naming.html -->
+    <module name="ConstantName">
+      <property name="severity" value="error"/>
+    </module>
+
+    <module name="LocalFinalVariableName">
+      <property name="severity" value="error"/>
+    </module>
+
+    <module name="LocalVariableName">
+      <property name="severity" value="error"/>
+    </module>
+
+    <module name="MemberName">
+      <property name="applyToPrivate" value="false"/>
+    </module>
+
+    <module name="MethodName">
+      <property name="severity" value="error"/>
+    </module>
+
+    <module name="PackageName">
+      <property name="severity" value="error"/>
+    </module>
+
+    <module name="ParameterName">
+      <property name="severity" value="error"/>
+    </module>
+
+    <module name="StaticVariableName">
+      <property name="severity" value="error"/>
+    </module>
+
+    <module name="TypeName">
+      <property name="severity" value="error"/>
+    </module>
+
+    <!-- Checks for imports -->
+    <!-- See https://checkstyle.org/config_imports.html -->
+    <!-- <module name="AvoidStarImport"/> -->
+    <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
+    <module name="RedundantImport"/>
+
+    <module name="UnusedImports">
+      <property name="severity" value="error"/>
+      <property name="processJavadoc" value="false"/>
+    </module>
+
+    <!-- Checks for Size Violations. -->
+    <!-- See https://checkstyle.org/config_sizes.html -->
+    <module name="MethodLength">
+      <property name="severity" value="error"/>
+    </module>
+
+    <module name="ParameterNumber">
+      <property name="severity" value="error"/>
+      <property name="max" value="4"/>
+    </module>
+
+    <!-- Checks for whitespace -->
+    <!-- See https://checkstyle.org/config_whitespace.html -->
+    <module name="EmptyForIteratorPad"/>
+    <module name="GenericWhitespace"/>
+    <module name="MethodParamPad"/>
+    <module name="NoWhitespaceAfter"/>
+    <module name="NoWhitespaceBefore"/>
+    <module name="OperatorWrap"/>
+    <module name="ParenPad"/>
+    <module name="TypecastParenPad"/>
+
+    <!-- Modifier Checks -->
+    <!-- See https://checkstyle.org/config_modifiers.html -->
+    <module name="ModifierOrder"/>
+    <module name="RedundantModifier"/>
+
+    <!-- Checks for blocks. You know, those {}'s -->
+    <!-- See https://checkstyle.org/config_blocks.html -->
+    <module name="AvoidNestedBlocks"/>
+    <module name="EmptyBlock"/>
+    <module name="LeftCurly"/>
+
+    <module name="RightCurly">
+      <property name="option" value="alone_or_singleline"/>
+      <property name="tokens" value="LITERAL_IF, LITERAL_ELSE"/>
+    </module>
+
+    <!-- Checks for common coding problems -->
+    <!-- See https://checkstyle.org/config_coding.html -->
+    <module name="UnnecessaryParentheses"/>
+    <module name="EmptyStatement"/>
+    <module name="EqualsHashCode"/>
+    <module name="IllegalInstantiation"/>
+    <module name="InnerAssignment"/>
+    <module name="MissingSwitchDefault"/>
+    <module name="SimplifyBooleanExpression"/>
+    <module name="SimplifyBooleanReturn"/>
+    <module name="ModifiedControlVariable"/>
+
+    <module name="HiddenField">
+      <property name="ignoreSetter" value="true"/>
+      <property name="ignoreConstructorParameter" value="true"/>
+    </module>
+
+    <module name="MagicNumber">
+      <property name="ignoreAnnotation" value="true"/>
+      <property name="ignoreNumbers" value="0, 1, 2, 5, 10, 50, 100, 500, 1000, 1000000"/>
+      <property name="severity" value="error"/>
+    </module>
+
+    <!-- Checks for class design -->
+    <!-- See https://checkstyle.org/config_design.html -->
+    <module name="DesignForExtension">
+      <property name="ignoredAnnotations" value="Override, Test, After, Before, BeforeClass, AfterClass, BeforeTest, AfterTest, BeforeSuite, AfterSuite"/>
+    </module>
+
+    <module name="FinalClass">
+      <property name="severity" value="error"/>
+    </module>
+
+    <module name="InterfaceIsType">
+      <property name="severity" value="error"/>
+      <property name="allowMarkerInterfaces" value="true"/>
+    </module>
+
+    <module name="VisibilityModifier">
+      <property name="severity" value="error"/>
+      <property name="immutableClassCanonicalNames"
+                value="java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character, java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long, java.lang.Short, java.lang.StackTraceElement, java.lang.String, java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress, java.net.URI, java.net.URL, java.util.Locale, java.util.UUID"/>
+    </module>
+
+    <module name="DeclarationOrder">
+      <property name="severity" value="error"/>
+    </module>
+
+    <!-- Miscellaneous other checks. -->
+    <!-- See https://checkstyle.org/config_misc.html -->
+    <module name="ArrayTypeStyle"/>
+
+    <module name="TodoComment">
+      <property name="format" value="TODO | todo"/>
+    </module>
+    <module name="UpperEll"/>
+
+    <module name="Regexp">
+      <property name="severity" value="error"/>
+      <property name="format" value="System\.out\.println"/>
+      <property name="illegalPattern" value="true"/>
+    </module>
+
+    <module name="SuppressWarningsHolder"/>
+
+  </module>
+
+</module>

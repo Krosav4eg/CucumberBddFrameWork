@@ -11,6 +11,7 @@
     <properties>
         <java.version>11</java.version>
         <maven.compiler.version>3.8.1</maven.compiler.version>
+        <checkstyle.plugin>3.2.1</checkstyle.plugin>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.surefire.plugin>2.22.2</maven.surefire.plugin>
@@ -75,7 +76,6 @@
         </profile>
     </profiles>
 
-    <!-- Below code is to generate cucumber html reporting -->
     <build>
         <plugins>
             <plugin>
@@ -87,6 +87,35 @@
                     <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
+
+            <!--            Checkstyle-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.plugin}</version>
+                <configuration>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <configLocation>src/test/resources/checkstyle-rules.xml</configLocation>
+                    <suppressionsLocation>src/test/resources/checkstyle-suppressions.xml</suppressionsLocation>
+                    <suppressionsFileExpression>src/test/resources/checkstyle-suppressions.file
+                    </suppressionsFileExpression>
+                    <failsOnError>true</failsOnError>
+                    <failOnViolation>false</failOnViolation>
+                    <consoleOutput>true</consoleOutput>
+                    <linkXRef>true</linkXRef>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Below code is to generate cucumber html reporting -->
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>

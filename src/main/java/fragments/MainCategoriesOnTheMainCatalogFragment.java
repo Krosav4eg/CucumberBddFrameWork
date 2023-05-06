@@ -14,6 +14,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static core.helpers.ActionHelper.*;
 
+@SuppressWarnings({"checkstyle:VisibilityModifier", "checkstyle:DesignForExtension"})
 public class MainCategoriesOnTheMainCatalogFragment {
 
     SelenideElement mainCategoriesMenuWrapper = $(byCssSelector(".menu-wrapper.menu-wrapper_state_static"));

@@ -18,6 +18,7 @@ import static com.codeborne.selenide.Selenide.open;
 /**
  * ActionsHelper class is intended for common actions on a webpage in tests.
  */
+@SuppressWarnings({"checkstyle:LineLength", "checkstyle:MagicNumber"})
 public class ActionHelper {
 
     public static final PropsConfig PROPS_CONFIG = ConfigFactory.create(PropsConfig.class);

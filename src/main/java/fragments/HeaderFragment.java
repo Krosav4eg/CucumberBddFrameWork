@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selenide.*;
 import static core.helpers.ActionHelper.*;
 
+@SuppressWarnings({"checkstyle:VisibilityModifier", "checkstyle:DesignForExtension"})
 public class HeaderFragment {
     SelenideElement mainLogo = $(byCssSelector("img[alt='Rozetka Logo']"));
     String catalogMenuButton = "//button[@aria-label='%s']";
