@@ -39,20 +39,22 @@ commands:
 
   restore-and-save-cache:
     description: "Restore and save cache"
-     - restore_cache:
+    steps:
+      - restore_cache:
          keys:
             - v1-dependencies-{{ checksum "pom.xml" }}
             - v1-dependencies-
 
-     - run: mvn dependency:go-offline
+      - run: mvn dependency:go-offline
 
-     - save_cache:
+      - save_cache:
         paths:
             - ~/.m2
         key: v1-dependencies-{{ checksum "pom.xml" }}
 
   running-automation-tests:
     description: "Running automation tests"
+    steps:
       - run:
           name: Run tests
           command: mvn
@@ -61,6 +63,7 @@ commands:
 
   generating-cucumber-report:
     description: "generating-cucumber-report"
+    steps:
       - store_artifacts:
           name: Upload Cucumber report
           path: target/cucumber-html-reports
@@ -68,6 +71,7 @@ commands:
 
   send-notification-to-slack-channel:
     description: "Send notification to Slack channel"
+    steps:
        - when:
           condition: << pipeline.parameters.notifyToSlack >>
           steps:
