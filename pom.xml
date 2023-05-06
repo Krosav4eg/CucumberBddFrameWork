@@ -13,6 +13,7 @@
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <checkstyle.plugin>3.2.1</checkstyle.plugin>
         <site.plugin>3.9.1</site.plugin>
+        <maven.info.reports.plugin>3.0.0</maven.info.reports.plugin>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.surefire.plugin>2.22.2</maven.surefire.plugin>
@@ -115,12 +116,17 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--Maven site-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>${site.plugin}</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven.info.reports.plugin}</version>
+            </plugin>
+
             <!-- Below code is to generate cucumber html reporting -->
             <plugin>
                 <groupId>net.masterthought</groupId>
