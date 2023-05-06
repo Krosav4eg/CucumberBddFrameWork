@@ -87,9 +87,10 @@ commands:
     steps:
       - run:
           name: Checkstyle check code
-          command: mvn
-            clean site checkstyle:checkstyle
-          no_output_timeout: 90m
+          command: |
+            mvn clean site
+            mvn checkstyle:checkstyle
+          no_output_timeout: 40m
 
   store-checkstyle-artifacts:
     description: Store Checkstyle generated artifacts
@@ -151,5 +152,6 @@ workflows:
     jobs:
       - buid_approval:
           type: approval
-      - checkstyle-check
-      - automation-tests-running-configuration
+      - automation-tests-running-configuration:
+          requires:
+            - checkstyle-check
