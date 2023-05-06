@@ -72,6 +72,10 @@ commands:
 
 jobs:
   automation-tests-running-configuration:
+    parameters:
+      NightlyRunNotify:
+        type: boolean
+        default: false
     executor: test-executor
     steps:
       - run-tests
@@ -100,6 +104,7 @@ workflows:
                 - master
     jobs:
       - automation-tests-running-configuration:
+          NightlyRunNotify: true
 
   on-demand:
     when: << pipeline.parameters.ApiTrigger >>
