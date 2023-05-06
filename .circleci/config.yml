@@ -150,7 +150,7 @@ workflows:
   on-demand:
     when: << pipeline.parameters.ApiTrigger >>
     jobs:
+      - checkstyle-check
       - buid_approval:
           type: approval
-      - checkstyle-check
       - automation-tests-running-configuration
