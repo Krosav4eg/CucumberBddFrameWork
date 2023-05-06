@@ -17,52 +17,63 @@ parameters:
     type: boolean
     default: true
 
-jobs:
-  build:
-    parameters:
-      NightlyRunNotify:
-        type: boolean
-        default: false
 
+executors:
+  test-executor:
     docker:
       - image: circleci/openjdk:11.0.6-jdk-buster-node-browsers-legacy
 
-    working_directory: ~/ui-automation-listings
+    working_directory: ~/cucumber-bdd-ui-automation-tests
 
     environment:
       MAVEN_OPTS: -Xmx3200m
 
+commands:
+  #My custom command name 'install-browsers'
+  install-browsers:
+    description: "Checkout to my code and install browsers"
     steps:
       - checkout
       - browser-tools/install-firefox
       - browser-tools/install-geckodriver
 
+  restore-and-save-cache:
+    description: "Restore and save cache"
+    steps:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }}
             - v1-dependencies-
-
 
       - run: mvn dependency:go-offline
 
       - save_cache:
           paths:
             - ~/.m2
+
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
+  running-automation-tests:
+    description: "Running automation tests"
+    steps:
       - run:
           name: Run tests
           command: mvn
             clean verify -P parallel
           no_output_timeout: 40m
 
+  generating-cucumber-report:
+    description: "generating-cucumber-report"
+    steps:
       - store_artifacts:
           name: Upload Cucumber report
           path: target/cucumber-html-reports
           destination: Report/Cucumber
 
-      # Send notification to my Slack channel
-      - when:
+  send-notification-to-slack-channel:
+    description: "Send notification to Slack channel"
+    steps:
+       - when:
           condition: << pipeline.parameters.notifyToSlack >>
           steps:
             - slack/status:
@@ -71,6 +82,23 @@ jobs:
                 only_for_branches: master
                 webhook: $SLACK_WEBHOOK
 
+jobs:
+  #There is a custom name of my job. We can change it anytime
+  automation-tests-running-configuration:
+    parameters:
+      NightlyRunNotify:
+        type: boolean
+        default: false
+    executor: test-executor
+    #There is all custom names which located under 'Commands' section
+    steps:
+      - install-browsers
+      - restore-and-save-cache
+      - running-automation-tests
+      - generating-cucumber-report
+      - send-notification-to-slack-channel
+
+
 workflows:
 
   commit-workflow:
@@ -78,7 +106,7 @@ workflows:
       and:
         - equal: [ false, << pipeline.parameters.ApiTrigger >>]
     jobs:
-      - build:
+      - automation-tests-running-configuration:
           filters:
             branches:
               only:
@@ -93,10 +121,12 @@ workflows:
               only:
                 - master
     jobs:
-      - build:
+      - automation-tests-running-configuration:
           NightlyRunNotify: true
 
-  on_demand:
+  on-demand:
     when: << pipeline.parameters.ApiTrigger >>
     jobs:
-      - build
+      - buid_approval:
+            type: approval
+      - automation-tests-running-configuration
