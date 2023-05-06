@@ -72,9 +72,9 @@ commands:
 
 jobs:
   automation-tests-running-configuration:
-   executor: test-executor
-   steps:
-    - run-tests
+    executor: test-executor
+    steps:
+      - run-tests
 
 
 workflows:
