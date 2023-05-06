@@ -88,6 +88,7 @@ commands:
       - run:
           name: Checkstyle check code
           command: |
+            mvn install
             mvn clean site
             mvn checkstyle:checkstyle
           no_output_timeout: 40m
