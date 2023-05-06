@@ -100,9 +100,8 @@ workflows:
                 - master
     jobs:
       - automation-tests-running-configuration:
-          NightlyRunNotify: true
 
-  on_demand:
+  on-demand:
     when: << pipeline.parameters.ApiTrigger >>
     jobs:
       - buid_approval:
