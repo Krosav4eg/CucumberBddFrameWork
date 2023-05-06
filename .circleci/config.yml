@@ -29,6 +29,7 @@ executors:
       MAVEN_OPTS: -Xmx3200m
 
 commands:
+  #My custom command name- 'run-tests'
   run-tests:
     description: "Run Automation Tests"
     steps:
@@ -71,12 +72,14 @@ commands:
                 webhook: $SLACK_WEBHOOK
 
 jobs:
+  #There is a custom name of my job. We can change it anytime
   automation-tests-running-configuration:
     parameters:
       NightlyRunNotify:
         type: boolean
         default: false
     executor: test-executor
+    #There is all custom names which located under 'Commands' section
     steps:
       - run-tests
 
