@@ -8,21 +8,21 @@ API tests for Listings using BDD approach
 - Maven
 - Cucumber-Java - 7.0.0
 - JUnit - 4.12
-- Selenium - 3.12.0
-- ui-automation-library-0.0.18
+- Selenium - 3.14.0
+- Selenide - 5.25.1
+- Cucumber reporting 5.6.0
+
 
 ## Requirements
 - Java 11
-- Maven 3
+- Maven 3 or higher version
 
 ## Setup
 
 1. Clone the project
 2. Open the project in an IDE such as Eclipse or IntelliJ Idea
 3. Configure the JDK version in the IDE
-4. Install **gcloud cli** and log in following the instructions https://confluence.kw.com/display/KD/Downloading+from+artifact-registry
-5. Download dependencies using Maven
-6. Create file `src/test/resources/cukes.properties` and fill credentials for local run https://confluence.kw.com/display/KD/How+to+store+sensitive+data+in+circleCI
+4. Download dependencies using Maven
 
 ## Running the tests
 
