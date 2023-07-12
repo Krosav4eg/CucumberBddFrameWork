@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
-  browser-tools: circleci/browser-tools@1.4.0
+  browser-tools: circleci/browser-tools@1.4.1
 
 parameters:
   suite:
@@ -21,12 +21,12 @@ parameters:
 executors:
   test-executor:
     docker:
-      - image: circleci/openjdk:11.0.6-jdk-buster-node-browsers-legacy
+      - image: cimg/openjdk:11.0.19-browsers
 
     working_directory: ~/cucumber-bdd-ui-automation-tests
 
     environment:
-      MAVEN_OPTS: -Xmx3200m
+      MAVEN_OPTS: -Xmx4096m
 
 commands:
   #My custom command name 'install-browsers'
@@ -60,7 +60,7 @@ commands:
           name: Run tests
           command: mvn
             clean verify -P parallel
-          no_output_timeout: 40m
+          no_output_timeout: 20m
 
   generating-cucumber-report:
     description: "generating-cucumber-report"
