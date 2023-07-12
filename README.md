@@ -1,7 +1,7 @@
 # listings-ui-automation
 API tests for Listings using BDD approach
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Krosav4eg/MyBDDFrame/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Krosav4eg/MyBDDFrame/tree/master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Krosav4eg/CucumberBddFrameWork/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Krosav4eg/CucumberBddFrameWork/tree/master)
 
 ## Tools
 
