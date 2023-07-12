@@ -31,6 +31,7 @@ hs_err_pid*
 .settings/
 .classpath
 .project
+.xml
 
 # Build or test run output
 **/target/
