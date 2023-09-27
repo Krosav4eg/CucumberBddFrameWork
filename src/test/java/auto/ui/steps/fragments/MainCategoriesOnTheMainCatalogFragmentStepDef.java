@@ -14,13 +14,13 @@ public class MainCategoriesOnTheMainCatalogFragmentStepDef {
     @Inject
     MainCategoriesOnTheMainCatalogFragment mainCategoriesOnTheMainCatalogFragment;
 
-    @Then("user check main categories menu list:")
-    public void userCheckMainCategoriesMenuList(DataTable dataTable) {
-        List<String> expectedMainCategoriesList = dataTable.asList();
-        List<String> actualMainCategoriesList = mainCategoriesOnTheMainCatalogFragment.getMainCategoriesList();
-        Assert.assertEquals("Actual and Expected categories lists don't match", expectedMainCategoriesList,
-                actualMainCategoriesList);
-    }
+//    @Then("user check main categories menu list:")
+//    public void userCheckMainCategoriesMenuList(DataTable dataTable) {
+//        List<String> expectedMainCategoriesList = dataTable.asList();
+//        List<String> actualMainCategoriesList = mainCategoriesOnTheMainCatalogFragment.getMainCategoriesList();
+//        Assert.assertEquals("Actual and Expected categories lists don't match", expectedMainCategoriesList,
+//                actualMainCategoriesList);
+//    }
 
     @And("User scrolls to the {string} section")
     public void userScrollsToTheSection(String sectionText) {

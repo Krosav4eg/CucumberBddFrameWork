@@ -16,7 +16,7 @@ public class HeaderFragmentStepDef {
 
 
     @When("User clicks on {string} in header menu")
-    public void userClicksOnКаталогInHeaderMenu(String menuName) {
+    public void userClicksOnInHeaderMenu(String menuName) {
         headerFragment.clickOnCatalogMenuButton(menuName);
     }
 }
