@@ -16,11 +16,11 @@
         <maven.surefire.plugin>2.22.2</maven.surefire.plugin>
         <cucumber.version>7.0.0</cucumber.version>
         <cucumber.reporting>5.6.0</cucumber.reporting>
-        <selenium.version>3.14.0</selenium.version>
-        <webdrivermanager.version>4.4.3</webdrivermanager.version>
-        <selenide.version>5.25.1</selenide.version>
+        <selenide.version>6.0.1</selenide.version>
+        <selenium-java.version>4.11.0</selenium-java.version>
+        <selenium-server.version>3.141.59</selenium-server.version>
+        <webdrivermanager.version>5.4.1</webdrivermanager.version>
         <guice.version>4.2.3</guice.version>
-        <selenium.version>3.14.0</selenium.version>
         <log4j.version>2.11.0</log4j.version>
         <lombok.version>1.18.22</lombok.version>
         <junit.version>4.12</junit.version>
@@ -127,12 +127,12 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
+            <version>${selenium-java.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-api</artifactId>
-            <version>${selenium.version}</version>
+            <version>${selenium-java.version}</version>
         </dependency>
         <!-- Selenide -->
         <dependency>

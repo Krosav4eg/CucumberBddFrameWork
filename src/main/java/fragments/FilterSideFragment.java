@@ -8,12 +8,11 @@ import static core.helpers.ActionHelper.*;
 
 public class FilterSideFragment {
     SelenideElement sellerFilterBarBody = $(byCssSelector("div[data-filter-name='seller']"));
-    String sidebarBrand = "//ul[@class='checkbox-filter']//a[contains(@data-id, '%s')]";
+    String sidebarBrand = "//ul[@class='checkbox-filter']//a[contains(@href,'%s')]";
 
-    public FilterSideFragment selectBrandFromSideBar(String brandName) {
+    public void selectBrandFromSideBar(String brandName) {
         isElementDisplayed(sellerFilterBarBody);
         setRequiredTextIntoXpath(sidebarBrand, brandName).click();
         isElementSelected(setRequiredTextIntoXpath(sidebarBrand, brandName));
-        return new FilterSideFragment();
     }
 }

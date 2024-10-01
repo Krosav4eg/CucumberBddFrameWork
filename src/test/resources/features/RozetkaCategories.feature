@@ -3,7 +3,8 @@ Feature: Rozetka categories
 
   Background: Navigate to the main catalog page
     Given I navigate to home page
-    When User clicks on Rozetka icon in header menu
+    And Click on close button in expo area banner
+    And User clicks on Rozetka icon in header menu
 
   @Test-3
   Scenario: Verify partner categories

@@ -1,9 +1,6 @@
 package pages;
 
-import fragments.FilterSideFragment;
-import fragments.GoodItemFragment;
-import fragments.HeaderFragment;
-import fragments.MainCategoriesOnTheMainCatalogFragment;
+import fragments.*;
 import lombok.Getter;
 
 import static core.helpers.ActionHelper.*;
@@ -16,6 +13,7 @@ import static core.helpers.ActionHelper.*;
  */
 @Getter
 public class AbstractPage {
+    protected ExponeaBannerFragment ExponeaBannerFragment = new ExponeaBannerFragment();
     protected GoodItemFragment goodItemFragment = new GoodItemFragment();
     protected FilterSideFragment filterSideFragment = new FilterSideFragment();
     protected HeaderFragment headerFragment = new HeaderFragment();

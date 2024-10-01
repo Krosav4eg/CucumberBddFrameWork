@@ -39,7 +39,7 @@ public class BrowserFactory extends DriverCapabilities {
         if (browserName != null) {
             if (CHROME.getBrowser().equalsIgnoreCase(browserName)) {
                 WebDriverManager.chromedriver().setup();
-                driverThread.set(new ChromeDriver(chromeOptions()));
+                driverThread.set(new ChromeDriver(getChromeOptions()));
             } else if (FIREFOX.getBrowser().equalsIgnoreCase(browserName)) {
                 System.setProperty(DRIVER_NAME_FIREFOX, FIREFOX_DRIVER_PATH);
                 driverThread.set(new FirefoxDriver());
