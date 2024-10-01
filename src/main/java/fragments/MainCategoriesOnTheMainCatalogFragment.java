@@ -28,7 +28,7 @@ public class MainCategoriesOnTheMainCatalogFragment {
 
     public List<String> getPartnersSectionList(String text) {
         isElementDisplayed(setRequiredTextIntoXpath(partnerItems, text));
-        return $$(byXpath(String.format(partnerItems, text))).stream().map(WebElement::getText)
+        return $$(byXpath(String.format(partnerItems, text))).stream().map(WebElement::getText).limit(4)
                 .collect(Collectors.toList());
     }
 
